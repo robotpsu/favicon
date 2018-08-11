@@ -95,7 +95,7 @@ def get_dokuwiki_interwiki_icons(dokuwiki_root: str, force: bool = False) -> Non
                 name = m.group(1)
                 filename = os.path.join(images_dir, name + '.png')
                 if os.path.isfile(filename) and not force:
-                    logging.info("%s: icon exists already - skip")
+                    logging.info("%s: icon exists already - skip", name)
                     continue
                 uri = '{uri.scheme}://{uri.netloc}/'.format(uri=urlparse(m.group(2)))
                 favicon_uri = get_favicon_uri(uri)
