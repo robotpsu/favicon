@@ -153,7 +153,7 @@ if __name__ == '__main__':
         logging.error("cannot connect to '%s'", args.uri)
 
     except requests.RequestException as ex:
-        logging.error("requests error: %s", ex)
+        logging.error("requests: %s", ex)
 
     except Exception as ex:
-        logging.error("error: %s", ex)
+        logging.error(ex)
