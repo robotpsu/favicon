@@ -111,15 +111,16 @@ def get_dokuwiki_interwiki_icons(dokuwiki_root: str, force: bool = False) -> Non
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='Get favicon for a URI')
-    parser.add_argument('uri', help='URI to get favicon for')
-    parser.add_argument('-v', '--verbose', action='store_true', help='show info messages')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-u', '--uri', metavar='URI', help='URI to get favicon for')
     parser.add_argument('-P', '--print', action='store_true', help='show favicon URI and exit')
     parser.add_argument('-d', '--dir', default='', help='save favicon in directory DIR')
     parser.add_argument('-f', '--filename', default='', help='save favicon as FILENAME')
     parser.add_argument('-r', '--resize', metavar='SIZE', type=int, default=0, help='resize favicon to SIZE×SIZE')
     parser.add_argument('-p', '--png', action='store_true', help='convert favicon to PNG format')
-    parser.add_argument('-D', '--dokuwiki', metavar='PATH', help='get favicons for DokuWiki interwiki links')
+    group.add_argument('-D', '--dokuwiki', metavar='PATH', help='get favicons for DokuWiki interwiki links')
     parser.add_argument('-F', '--force', action='store_true', help='force DokuWiki interwiki icons update')
+    parser.add_argument('-v', '--verbose', action='store_true', help='show info messages')
     args = parser.parse_args()
 
     logging.basicConfig(
